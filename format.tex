@@ -1,0 +1,28 @@
+\usepackage{color}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{witharrows}
+\usepackage{tikz}
+\usetikzlibrary{graphs}
+
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt)%
+    circle (.5em) node {\makebox[1em][c]{\small #1}};}}
+
+% array
+\renewcommand\arraystretch{1.5}
+\newcommand{\superlooselist}{%
+    \setlength{\itemsep}{4\itemsep}\setlength{\parskip}{4\parskip}}
+\newcommand{\looselist}{%
+    \setlength{\itemsep}{2\itemsep}\setlength{\parskip}{2\parskip}}
+\newcommand{\tightlist}{%
+    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcommand{\normallist}{%
+    \setlength{\itemsep}{0.5\itemsep}\setlength{\parskip}{0.5\parskip}}
+
+
+
+% color
+\newcommand{\red}[1]{{\color{red}#1}}
+\newcommand{\gray}[1]{{\color{gray}#1}}

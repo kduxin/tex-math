@@ -1,0 +1,44 @@
+\usepackage{capt-of}
+\usepackage{tcolorbox}
+\usepackage{varwidth}
+\usepackage{amsmath}
+
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+\tcbuselibrary{xparse}%xparse . sty定义的NewDocumentCommand
+\definecolor{deficolor}{RGB}{200,44,44}
+\definecolor{theocolor}{RGB}{0,0,0}
+\definecolor{praccolor}{RGB}{49,44,120}
+
+\newcounter{theorem}
+\numberwithin{theorem}{section}% numberwithin是amsmath定义
+\NewTColorBox{theobox}{o m +o m}{% o省略可能的参数、m必备的参数、+是多行里，也可以表示。
+%# 1 =标题（省略可), # 2 =定理环境名，# 3 = tcolorbox追加的选项
+enhanced,frame empty,interior empty,
+coltitle=white,fonttitle=\bfseries,colbacktitle={#4},
+extras broken={frame empty,interior empty},
+borderline={0.5mm}{0mm}{#4},
+sharp corners=downhill,
+breakable=true,
+top=4mm,
+before skip=3.5mm,
+attach boxed title to top left={yshift=-3mm,xshift=5mm},
+boxed title style={boxrule=0pt,sharp corners=all},varwidth boxed title,
+IfNoValueTF={#1}{title=#2~\thetheorem.}{title=#2~\thetheorem:~#1},
+IfNoValueTF={#3}{}{#3}%第三个参数省略- NoValue -返回
+}
+
+\NewDocumentEnvironment{theorem}{o m +o m}{%NewDocumentEnvironment由xparse.sty定义
+\refstepcounter{theorem}\begin{theobox}[#1]{#2}[#3]{#4}}{\end{theobox}}
+
+\NewDocumentEnvironment{defi}{o +d""}{%d""表示作为省略的一部分。
+\begin{theorem}[#1]{定义}[#2]{{deficolor}}
+}{\end{theorem}}
+
+\NewDocumentEnvironment{theo}{o +d""}{%d""表示作为省略的一部分。
+\begin{theorem}[#1]{定理}[#2]{{theocolor}}
+}{\end{theorem}}
+
+\NewDocumentEnvironment{prac}{o +d""}{%
+\begin{theorem}[#1]{练习}[#2]{{praccolor}}
+}{\end{theorem}}
